@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { AddCategory } from "./components/AddCategory";
+import { useState } from 'react';
+import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 
 export const GifExpertApp = () => {
     //usesStatesSnipper nos cre esta seccion de abajo
     //se debe importar.
-    const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
+    const [categories, setCategories] = useState(['Gatitos']);
 
     const onAddCategory = (categoria) => {
         //condicional si existe la categoria no l cargue como nueva
@@ -13,7 +14,7 @@ export const GifExpertApp = () => {
         if (categories.includes(categoria)) return; //si la categoria NO existe sigue el codigo de abajo
         //con los ... permite mantener todos las categorias que tiene el array
         // y agregar la nueva: dracula
-         setCategories([...categories, categoria]);
+         setCategories([categoria, ...categories ]);
     }
     
   return (
@@ -27,13 +28,16 @@ export const GifExpertApp = () => {
 
         {/* 3. listado de gif */}
             {/* <button onClick={onAddCategory}>Agregar Catgoria</button> */}
-            <ol>
+            <div>
                 {
-                    categories.map( category => {
-                        return <li key={category}> {category} </li>
-                    })
+                    categories.map( (category) => 
+                        <GifGrid 
+                            key={category}
+                            category={category}
+                            />
+                    )
                 }
-            </ol>
+            </div>
 
     </>
   )
